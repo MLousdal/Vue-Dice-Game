@@ -120,7 +120,7 @@ export default {
       }
 
       // // Winning scenario
-      if (newScore >= 10) {
+      if (newScore >= 50) {
         player.wins.push("win");
         this.gameEnd = true;
       }
