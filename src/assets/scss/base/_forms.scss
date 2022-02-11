@@ -29,9 +29,12 @@ select {
   width: 100%;
 
   &:focus {
-    border: $border-width-thick solid var(--color-primary);
+    border: $border-width-thick solid var(--player1-color);
     margin: 0;
     outline: none;
+  }
+  .player2 & {
+    border: $border-width-thick solid var(--player2-color);
   }
 }
 

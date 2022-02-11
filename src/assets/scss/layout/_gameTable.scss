@@ -3,7 +3,6 @@
 .gameTable {
   position: relative;
   display: flex;
-  gap: $unit-8;
   justify-content: space-between;
 
   .score {

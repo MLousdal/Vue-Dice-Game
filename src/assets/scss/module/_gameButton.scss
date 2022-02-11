@@ -4,12 +4,9 @@
   background-color: var(--foreground-color);
   border-radius: $border-radius;
   box-shadow: $shadow-normal var(--shadow);
-  left: 50%;
   margin-top: auto;
   padding: $unit-15;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 5;
   width: fit-content;
   display: flex;
   flex-direction: column;
@@ -35,13 +32,10 @@
 
 @media (max-width: 1000px) {
   .buttonContainer {
-    position: relative;
-    transform: none;
-    top: 0;
-    left: 0;
     width: 100%;
     flex-direction: row;
     flex-wrap: nowrap;
+    order: 3;
 
     button {
       font-size: $font-size-base;

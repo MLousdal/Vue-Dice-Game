@@ -2,7 +2,6 @@
   <h1 class="text center">Dice on ice 🎲</h1>
   <main class="wrapper gameTable">
     <PlayerVue :player="players[1]"></PlayerVue>
-    <PlayerVue :player="players[2]"></PlayerVue>
     <section class="buttonContainer">
       <div class="dice">6</div>
       <button
@@ -25,6 +24,7 @@
         <span>🔄 New Game</span>
       </button>
     </section>
+    <PlayerVue :player="players[2]"></PlayerVue>
   </main>
   <section class="wrapper flex column gap-1">
     <div>
@@ -106,7 +106,7 @@ export default {
 
       setTimeout(() => {
         this.rollingDice = false;
-      }, 500);
+      }, 250);
 
       // Loosing scenario
       if (roll === 1) {
@@ -138,6 +138,11 @@ export default {
       this.updateScore(reset);
     },
     switchPlayer() {
+      this.rollingDice = true;
+
+      setTimeout(() => {
+        this.rollingDice = false;
+      }, 2000);
       switch (this.playerRef) {
         case 1:
           this.playerRef = 2;
