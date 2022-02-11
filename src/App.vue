@@ -104,10 +104,6 @@ export default {
       this.animateValue(dice, 8, roll, 150);
       this.dice = roll;
 
-      setTimeout(() => {
-        this.rollingDice = false;
-      }, 250);
-
       // Loosing scenario
       if (roll === 1) {
         this.updateScore(player.held);
@@ -125,6 +121,9 @@ export default {
         this.gameEnd = true;
       }
 
+      setTimeout(() => {
+        this.rollingDice = false;
+      }, 250);
       this.updateScore(newScore);
     },
     updateScore(newScore) {
