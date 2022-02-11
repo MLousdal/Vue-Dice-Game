@@ -1,0 +1,197 @@
+@use "../base/variables" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap");
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: clamp(1rem, 0.66vw + 0.85rem, 1.18rem);
+  line-height: 1.4;
+  color: var(--font-color);
+}
+
+// Headings
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  font-size: $font-size-xxxl;
+  line-height: 1.2;
+}
+h2 {
+  font-size: $font-size-xxl;
+  line-height: 1.25;
+}
+h3 {
+  font-size: $font-size-xl;
+  line-height: 1.3;
+}
+h4 {
+  font-size: $font-size-lg;
+  line-height: 1.35;
+}
+h5 {
+  font-size: $font-size-md;
+}
+h6 {
+  font-size: $font-size-sm;
+}
+
+// Body text
+p {
+  font-size: $font-size-base;
+}
+
+small {
+  font-size: $font-size-sm;
+}
+
+.text- {
+  &sm {
+    font-size: $font-size-sm;
+  }
+  &md {
+    font-size: $font-size-md;
+  }
+  &lg {
+    font-size: $font-size-lg;
+  }
+  &xl {
+    font-size: $font-size-xl;
+  }
+  &xxl {
+    font-size: $font-size-xxl;
+  }
+  &xxxl {
+    font-size: $font-size-xxxl;
+  }
+}
+
+.semi-bold,
+b {
+  font-weight: 700;
+}
+
+.bold,
+strong {
+  font-weight: 900;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1rem;
+}
+
+del,
+s {
+  text-decoration: line-through;
+}
+
+.em,
+em,
+i,
+dfn,
+cite,
+var {
+  font-style: italic;
+}
+
+ins {
+  text-decoration: underline;
+}
+
+mark {
+  background-color: var(--color-primary-light);
+  color: var(--font-color-inverse);
+}
+
+q {
+  display: inline;
+  quotes: unset;
+
+  &::before {
+    content: open-quote;
+  }
+  &::after {
+    content: close-quote;
+  }
+}
+
+blockquote {
+  display: inline;
+  quotes: unset;
+  border-left: $border-width-thick solid var(--border-dark);
+  padding-left: $layout-spacing;
+
+  p {
+    &::before {
+      content: open-quote;
+    }
+    &::after {
+      content: close-quote;
+    }
+  }
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+u {
+  text-decoration: underline;
+}
+
+address {
+  display: block;
+  font-style: italic;
+}
+
+// Links
+a {
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}
+
+.external-link {
+  margin: 0 4px 0 2px;
+  &::after {
+    content: "";
+    filter: var(--filter-primary);
+    background-image: url(../icons/mdi_open-in-new.svg);
+    background-size: cover;
+    position: relative;
+    display: inline-block;
+    left: 4px;
+    width: $unit-1;
+    height: $unit-1;
+  }
+}

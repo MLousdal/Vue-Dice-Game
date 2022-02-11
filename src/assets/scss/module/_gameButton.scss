@@ -1,0 +1,64 @@
+@use "../base/variables" as *;
+
+.buttonContainer {
+  background-color: var(--foreground-color);
+  border-radius: $border-radius;
+  box-shadow: $shadow-normal var(--shadow);
+  left: 50%;
+  margin-top: auto;
+  padding: $unit-15;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: $unit-1;
+  align-items: center;
+
+  button {
+    text-transform: uppercase;
+  }
+
+  .dice {
+    border-radius: $border-radius;
+    border: $border-width var(--font-color) solid;
+    font-size: $font-size-xxl;
+    height: $unit-2;
+    width: $unit-2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 1000px) {
+  .buttonContainer {
+    position: relative;
+    transform: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    button {
+      font-size: $font-size-base;
+      flex: 1 1 0px;
+      display: flex;
+      justify-content: center;
+
+      &:nth-of-type(1) {
+        order: 0;
+      }
+      &:last-of-type {
+        order: 2;
+      }
+    }
+
+    .dice {
+      order: 1;
+    }
+  }
+}

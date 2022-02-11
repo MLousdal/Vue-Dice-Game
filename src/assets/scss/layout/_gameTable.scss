@@ -1,0 +1,61 @@
+@use "../base/variables" as *;
+
+.gameTable {
+  position: relative;
+  display: flex;
+  gap: $unit-8;
+  justify-content: space-between;
+
+  .score {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+  .score-05 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .gameTable {
+    flex-direction: column;
+    gap: $unit-2;
+
+    .playerSection {
+      flex-direction: row;
+      justify-content: space-between;
+
+      .current {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .gameTable {
+    .playerSection {
+      flex-wrap: wrap;
+
+      .current {
+        width: 100%;
+        flex-direction: row;
+        gap: $unit-1;
+        align-items: center;
+
+        .held {
+          margin-left: auto;
+        }
+      }
+    }
+    .buttonContainer {
+      padding: $unit-05;
+    }
+
+    [data-alttext] > span {
+      display: none;
+    }
+
+    [data-alttext]::before {
+      content: attr(data-alttext);
+    }
+  }
+}
