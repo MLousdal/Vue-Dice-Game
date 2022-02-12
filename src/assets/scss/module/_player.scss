@@ -5,14 +5,15 @@
   border-radius: $border-radius;
   box-shadow: $shadow-normal-l var(--shadow);
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  flex-direction: row;
+  justify-content: space-between;
   gap: $unit-05;
+  text-align: center;
   transition: all 0.3s linear;
+  order: 2;
 
   &.active {
-    transform: scale(1.1);
-    box-shadow: 0px 0px 16px 8px $neutral-70;
+    box-shadow: 0px 0px 16px 8px $neutral-75;
   }
 
   h2 {
@@ -24,11 +25,16 @@
   .current {
     background-color: var(--foreground-color);
     border-radius: $border-radius;
-    margin-top: auto;
     padding: $unit-1 $unit-2;
     width: fit-content;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    gap: $unit-1;
+    align-items: center;
+
+    .wins {
+      height: min-content;
+    }
   }
 
   &.player {
@@ -37,6 +43,15 @@
     }
     &2 {
       background-color: var(--player2-color);
+    }
+    &3 {
+      background-color: var(--player3-color);
+    }
+    &4 {
+      background-color: var(--player4-color);
+    }
+    &5 {
+      background-color: var(--player5-color);
     }
   }
 

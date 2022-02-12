@@ -1,20 +1,23 @@
 @use "../base/variables" as *;
 
 .buttonContainer {
+  align-items: center;
   background-color: var(--foreground-color);
   border-radius: $border-radius;
   box-shadow: $shadow-normal var(--shadow);
-  margin-top: auto;
-  padding: $unit-15;
-  z-index: 5;
-  width: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   gap: $unit-1;
-  align-items: center;
+  justify-content: center;
+  order: 1;
+  padding: $unit-15;
+  height: min-content;
 
   button {
+    // width: 100%;
+    flex: 1 1 0px;
+    display: flex;
+    justify-content: center;
     text-transform: uppercase;
   }
 
@@ -35,13 +38,10 @@
     width: 100%;
     flex-direction: row;
     flex-wrap: nowrap;
-    order: 3;
+    order: 0;
 
     button {
       font-size: $font-size-base;
-      flex: 1 1 0px;
-      display: flex;
-      justify-content: center;
 
       &:nth-of-type(1) {
         order: 0;

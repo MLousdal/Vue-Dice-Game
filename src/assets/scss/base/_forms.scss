@@ -1,21 +1,6 @@
 @use "../base/variables" as *;
 
-.input,
-input[type="date"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="file"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
-textarea,
-select {
+input[type="text"] {
   color: var(--font-color-form);
   padding-inline: $unit-05;
   background-color: #fff;
@@ -26,7 +11,7 @@ select {
   margin: $border-offset;
   font-family: inherit;
   font-size: $font-size-xl;
-  width: 100%;
+  width: 60%;
 
   &:focus {
     border: $border-width-thick solid var(--player1-color);
@@ -36,30 +21,4 @@ select {
   .player2 & {
     border: $border-width-thick solid var(--player2-color);
   }
-}
-
-textarea {
-  resize: vertical;
-}
-
-label,
-legend {
-  display: block;
-  font-weight: 400;
-  font-size: calc(#{$unit-1} * 1.1);
-}
-
-fieldset {
-  padding: 0;
-  border-width: 0;
-}
-
-input[type="checkbox"],
-input[type="radio"] {
-  display: inline;
-}
-label > .label-body {
-  display: inline-block;
-  margin-left: $unit-05;
-  font-weight: normal;
 }

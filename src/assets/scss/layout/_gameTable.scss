@@ -3,7 +3,9 @@
 .gameTable {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  gap: $unit-1;
+  display: grid;
+  grid-template-columns: auto 1fr;
 
   .score {
     font-size: clamp(2rem, 5vw, 3rem);
@@ -11,12 +13,26 @@
   .score-05 {
     font-size: 1.5rem;
   }
+
+  .players-container {
+    grid-column: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: $unit-15;
+  }
+
+  .buttonContainer {
+    grid-column: 1;
+    grid-row: 1;
+  }
 }
 
 @media (max-width: 1000px) {
   .gameTable {
     flex-direction: column;
     gap: $unit-2;
+    display: flex;
 
     .playerSection {
       flex-direction: row;
@@ -26,6 +42,10 @@
         margin-top: 0;
       }
     }
+  }
+
+  input[type="text"] {
+    width: 50%;
   }
 }
 
@@ -56,5 +76,8 @@
     [data-alttext]::before {
       content: attr(data-alttext);
     }
+  }
+  input[type="text"] {
+    width: 85%;
   }
 }

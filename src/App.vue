@@ -1,9 +1,8 @@
 <template>
   <h1 class="text center">Dice on ice 🎲</h1>
   <main class="wrapper gameTable">
-    <PlayerVue :player="players[1]"></PlayerVue>
     <section class="buttonContainer">
-      <div class="dice">6</div>
+      <div class="dice" v-show="!gameEnd">6</div>
       <button
         v-if="!gameEnd"
         data-alttext="🎲 Roll"
@@ -24,7 +23,13 @@
         <span>🔄 New Game</span>
       </button>
     </section>
-    <PlayerVue :player="players[2]"></PlayerVue>
+    <div class="players-container">
+      <PlayerVue
+        :player="player"
+        v-for="player in players"
+        :key="player.num"
+      ></PlayerVue>
+    </div>
   </main>
   <section class="wrapper flex column gap-1">
     <div>
@@ -72,7 +77,7 @@ export default {
       players: {
         1: {
           name: "",
-          num: "1",
+          num: 1,
           active: true,
           score: 0,
           held: 0,
@@ -80,7 +85,23 @@ export default {
         },
         2: {
           name: "",
-          num: "2",
+          num: 2,
+          active: false,
+          score: 0,
+          held: 0,
+          wins: [],
+        },
+        3: {
+          name: "",
+          num: 3,
+          active: false,
+          score: 0,
+          held: 0,
+          wins: [],
+        },
+        4: {
+          name: "",
+          num: 4,
           active: false,
           score: 0,
           held: 0,
@@ -116,7 +137,7 @@ export default {
       }
 
       // // Winning scenario
-      if (newScore >= 50) {
+      if (newScore >= 10) {
         player.wins.push("win");
         this.gameEnd = true;
       }
@@ -142,6 +163,13 @@ export default {
       setTimeout(() => {
         this.rollingDice = false;
       }, 2000);
+
+      const arrPlayers = Object.values(this.players);
+
+      // let arrByActive = arrPlayers.filter((player) => player.active === true);
+
+      // console.log(arrByActive);
+
       switch (this.playerRef) {
         case 1:
           this.playerRef = 2;
@@ -149,9 +177,42 @@ export default {
           this.players[2].active = true;
           break;
         case 2:
+          if (arrPlayers.length > 2) {
+            this.playerRef = 3;
+            this.players[2].active = false;
+            this.players[3].active = true;
+            break;
+          }
           this.playerRef = 1;
-          this.players[1].active = true;
           this.players[2].active = false;
+          this.players[1].active = true;
+          break;
+        case 3:
+          if (arrPlayers.length > 3) {
+            this.playerRef = 4;
+            this.players[3].active = false;
+            this.players[4].active = true;
+            break;
+          }
+          this.playerRef = 1;
+          this.players[3].active = false;
+          this.players[1].active = true;
+          break;
+        case 4:
+          if (arrPlayers.length > 4) {
+            this.playerRef = 5;
+            this.players[4].active = false;
+            this.players[5].active = true;
+            break;
+          }
+          this.playerRef = 1;
+          this.players[4].active = false;
+          this.players[1].active = true;
+          break;
+        case 5:
+          this.playerRef = 1;
+          this.players[5].active = false;
+          this.players[1].active = true;
           break;
       }
     },

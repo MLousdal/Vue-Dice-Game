@@ -6,58 +6,6 @@
   padding: $unit-1;
 }
 
-.shadow {
-  box-shadow: $shadow-normal var(--shadow);
-
-  &.s {
-    box-shadow: $shadow-normal-s var(--shadow);
-  }
-
-  &.l {
-    box-shadow: $shadow-normal-l var(--shadow);
-  }
-}
-
-.round {
-  &.s {
-    border-radius: $border-radius-s;
-  }
-  &.l {
-    border-radius: $border-radius-l;
-  }
-  &.o {
-    border-radius: $border-radius-o;
-  }
-}
-
-.gaps {
-  // gaps in column layout
-  display: flex;
-  flex-flow: column nowrap;
-  gap: $unit-4;
-}
-
-.nav-offset {
-  padding-top: $unit-7;
-}
-
-.overlay {
-  &::after {
-    content: "";
-    background-color: var(--color-primary-transparent);
-    height: inherit;
-    left: 0;
-    position: absolute;
-    top: 0;
-    width: 100%;
-  }
-
-  .wrapper {
-    position: relative;
-    z-index: 2;
-  }
-}
-
 // Base
 .wrapper {
   width: 90%;
