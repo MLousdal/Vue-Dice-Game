@@ -1,7 +1,7 @@
 <template>
   <h1 class="text center">Dice on ice 🎲</h1>
   <main class="wrapper gameTable">
-    <section class="buttonContainer">
+    <div class="buttonContainer">
       <div class="dice" v-show="!gameEnd">6</div>
       <button
         v-if="!gameEnd"
@@ -22,13 +22,16 @@
       <button v-if="gameEnd" data-alttext="🔄 Restart" @click="newGame">
         <span>🔄 New Game</span>
       </button>
-    </section>
+    </div>
     <div class="players-container">
       <PlayerVue
-        :player="player"
         v-for="player in players"
+        :player="player"
         :key="player.num"
       ></PlayerVue>
+      <div class="addPlayer box" @click="addPlayer">
+        <h2>Add player +</h2>
+      </div>
     </div>
   </main>
   <section class="wrapper flex column gap-1">
@@ -73,9 +76,9 @@ export default {
       gameEnd: false,
       rollingDice: false,
       dice: 6,
-      playerRef: 1,
-      players: {
-        1: {
+      playerRef: 0,
+      players: [
+        {
           name: "",
           num: 1,
           active: true,
@@ -83,7 +86,7 @@ export default {
           held: 0,
           wins: [],
         },
-        2: {
+        {
           name: "",
           num: 2,
           active: false,
@@ -91,23 +94,7 @@ export default {
           held: 0,
           wins: [],
         },
-        3: {
-          name: "",
-          num: 3,
-          active: false,
-          score: 0,
-          held: 0,
-          wins: [],
-        },
-        4: {
-          name: "",
-          num: 4,
-          active: false,
-          score: 0,
-          held: 0,
-          wins: [],
-        },
-      },
+      ],
     };
   },
   methods: {
@@ -152,10 +139,11 @@ export default {
     },
     totalResetScore() {
       const reset = 0;
-      const player = this.players[this.playerRef];
 
-      player.held = reset;
-      this.updateScore(reset);
+      this.players.forEach((player) => {
+        player.score = reset;
+        player.held = reset;
+      });
     },
     switchPlayer() {
       this.rollingDice = true;
@@ -164,54 +152,50 @@ export default {
         this.rollingDice = false;
       }, 2000);
 
-      const arrPlayers = Object.values(this.players);
-
-      // let arrByActive = arrPlayers.filter((player) => player.active === true);
-
-      // console.log(arrByActive);
+      const arrPlayers = this.players;
 
       switch (this.playerRef) {
+        case 0:
+          this.playerRef = 1;
+          this.players[0].active = false;
+          this.players[1].active = true;
+          break;
         case 1:
-          this.playerRef = 2;
+          if (arrPlayers.length > 2) {
+            this.playerRef = 2;
+            this.players[1].active = false;
+            this.players[2].active = true;
+            break;
+          }
+          this.playerRef = 0;
           this.players[1].active = false;
-          this.players[2].active = true;
+          this.players[0].active = true;
           break;
         case 2:
-          if (arrPlayers.length > 2) {
+          if (arrPlayers.length > 3) {
             this.playerRef = 3;
             this.players[2].active = false;
             this.players[3].active = true;
             break;
           }
-          this.playerRef = 1;
+          this.playerRef = 0;
           this.players[2].active = false;
           this.players[1].active = true;
           break;
         case 3:
-          if (arrPlayers.length > 3) {
+          if (arrPlayers.length > 4) {
             this.playerRef = 4;
             this.players[3].active = false;
             this.players[4].active = true;
             break;
           }
-          this.playerRef = 1;
+          this.playerRef = 0;
           this.players[3].active = false;
           this.players[1].active = true;
           break;
         case 4:
-          if (arrPlayers.length > 4) {
-            this.playerRef = 5;
-            this.players[4].active = false;
-            this.players[5].active = true;
-            break;
-          }
-          this.playerRef = 1;
+          this.playerRef = 0;
           this.players[4].active = false;
-          this.players[1].active = true;
-          break;
-        case 5:
-          this.playerRef = 1;
-          this.players[5].active = false;
           this.players[1].active = true;
           break;
       }
@@ -224,10 +208,17 @@ export default {
     },
     newGame() {
       this.totalResetScore();
-      this.switchPlayer();
-      this.totalResetScore();
-      this.switchPlayer();
       this.gameEnd = false;
+    },
+    addPlayer() {
+      this.players.push({
+        name: "",
+        num: this.players.length + 1,
+        active: false,
+        score: 0,
+        held: 0,
+        wins: [],
+      });
     },
     animateValue(obj, start, end, duration) {
       let startTimestamp = null;
