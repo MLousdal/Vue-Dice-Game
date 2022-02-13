@@ -81,6 +81,7 @@ export default {
         {
           name: "",
           num: 1,
+          color: 200,
           active: true,
           score: 0,
           held: 0,
@@ -89,6 +90,7 @@ export default {
         {
           name: "",
           num: 2,
+          color: 0,
           active: false,
           score: 0,
           held: 0,
@@ -124,7 +126,7 @@ export default {
       }
 
       // // Winning scenario
-      if (newScore >= 10) {
+      if (newScore >= 50) {
         player.wins.push("win");
         this.gameEnd = true;
       }
@@ -152,53 +154,15 @@ export default {
         this.rollingDice = false;
       }, 2000);
 
-      const arrPlayers = this.players;
+      this.players[this.playerRef].active = false;
 
-      switch (this.playerRef) {
-        case 0:
-          this.playerRef = 1;
-          this.players[0].active = false;
-          this.players[1].active = true;
-          break;
-        case 1:
-          if (arrPlayers.length > 2) {
-            this.playerRef = 2;
-            this.players[1].active = false;
-            this.players[2].active = true;
-            break;
-          }
-          this.playerRef = 0;
-          this.players[1].active = false;
-          this.players[0].active = true;
-          break;
-        case 2:
-          if (arrPlayers.length > 3) {
-            this.playerRef = 3;
-            this.players[2].active = false;
-            this.players[3].active = true;
-            break;
-          }
-          this.playerRef = 0;
-          this.players[2].active = false;
-          this.players[1].active = true;
-          break;
-        case 3:
-          if (arrPlayers.length > 4) {
-            this.playerRef = 4;
-            this.players[3].active = false;
-            this.players[4].active = true;
-            break;
-          }
-          this.playerRef = 0;
-          this.players[3].active = false;
-          this.players[1].active = true;
-          break;
-        case 4:
-          this.playerRef = 0;
-          this.players[4].active = false;
-          this.players[1].active = true;
-          break;
+      if (this.playerRef == this.players.length - 1) {
+        this.playerRef = this.playerRef + 1;
+      } else {
+        this.playerRef = 0;
       }
+
+      this.players[this.playerRef].active = true;
     },
     holdScore() {
       const player = this.players[this.playerRef];
@@ -214,6 +178,7 @@ export default {
       this.players.push({
         name: "",
         num: this.players.length + 1,
+        color: this.randomColor(),
         active: false,
         score: 0,
         held: 0,
@@ -231,6 +196,10 @@ export default {
         }
       };
       window.requestAnimationFrame(step);
+    },
+    randomColor() {
+      return Math.floor(Math.random() * 360) + 30;
+      // return Math.random(360 / this.players.length);
     },
   },
 };

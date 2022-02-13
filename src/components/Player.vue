@@ -1,7 +1,8 @@
 <template>
   <section
     class="playerSection box"
-    :class="[player ? `player${player.num}` : '', { active: player.active }]"
+    :class="[{ active: player.active }]"
+    :style="`background-color:hsl(${player.color}, 100%, 80%)`"
   >
     <h2 v-if="!isEditing" @click="editName">
       {{ !player.name ? `Player ${player.num}` : player.name }}
