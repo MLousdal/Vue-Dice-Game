@@ -2,16 +2,15 @@
 
 .playerSection,
 .addPlayer {
-  align-items: center;
   border-radius: $border-radius;
   box-shadow: $shadow-normal-l var(--shadow);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 60% auto 30%;
+  justify-items: start;
+  align-items: center;
   gap: $unit-05;
   text-align: center;
   transition: all 0.3s linear;
-  order: 2;
 
   &.active {
     box-shadow: 0px 0px 16px 8px $neutral-75;
@@ -20,21 +19,22 @@
   h2 {
     white-space: nowrap;
     overflow: hidden;
-    max-width: 11ch;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
 
   .current {
     background-color: var(--foreground-color);
     border-radius: $border-radius;
-    padding: $unit-1 $unit-2;
-    width: fit-content;
+    padding: $unit-1;
+    width: 100%;
     display: flex;
     flex-direction: row;
     gap: $unit-1;
     align-items: center;
 
     .wins {
-      height: min-content;
+      flex: 1 1 0px;
     }
   }
 
@@ -65,6 +65,9 @@
 
 .addPlayer {
   opacity: 0.5;
+  h2 {
+    grid-column: 1 / span 3;
+  }
 
   &:hover {
     cursor: pointer;

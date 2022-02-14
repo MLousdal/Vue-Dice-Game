@@ -11,7 +11,7 @@ input[type="text"] {
   margin: $border-offset;
   font-family: inherit;
   font-size: $font-size-xl;
-  width: 60%;
+  max-width: 100%;
 
   &:focus {
     border: $border-width-thick solid var(--player1-color);

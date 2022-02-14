@@ -32,7 +32,6 @@
         Rules
       </button>
     </aside>
-
     <div class="players-container">
       <PlayerVue
         v-for="player in players"
@@ -67,6 +66,20 @@
       </ul>
     </div>
   </section>
+  <div
+    class="winnerOverlay"
+    v-if="showWinner"
+    @click="showWinner = !showWinner"
+  >
+    <h1>
+      {{
+        players[playerRef].name == "Player"
+          ? "Player " + players[playerRef].num
+          : players[playerRef].name
+      }}
+      is the winner <span>🏆</span>
+    </h1>
+  </div>
 </template>
 
 <script>
@@ -79,13 +92,14 @@ export default {
   data() {
     return {
       showRules: false,
+      showWinner: false,
       gameEnd: false,
       rollingDice: false,
       dice: 6,
       playerRef: 0,
       players: [
         {
-          name: "",
+          name: "Player",
           num: 1,
           color: 200,
           active: true,
@@ -94,7 +108,7 @@ export default {
           wins: [],
         },
         {
-          name: "",
+          name: "Player",
           num: 2,
           color: 0,
           active: false,
@@ -133,7 +147,14 @@ export default {
 
       // // Winning scenario
       if (newScore >= 50) {
-        player.wins.push("win");
+        if (player.wins.length < 5) {
+          player.wins.push("win");
+        } else {
+          this.showWinner = true;
+          this.players.forEach((player) => {
+            player.wins = [];
+          });
+        }
         this.gameEnd = true;
       }
 
@@ -181,10 +202,11 @@ export default {
     newGame() {
       this.totalResetScore();
       this.gameEnd = false;
+      this.showWinner = false;
     },
     addPlayer() {
       this.players.push({
-        name: "",
+        name: "Player",
         num: this.amountPlayers + 1,
         color: this.randomColor(),
         active: false,

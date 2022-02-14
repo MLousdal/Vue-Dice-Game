@@ -31,6 +31,27 @@
     // grid-row: 1;
   }
 }
+.winnerOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: hsla(50, 100%, 80, 0.3);
+  cursor: pointer;
+
+  h1 {
+    font-size: $font-size-xxxl;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    background-color: $neutral-100;
+    border-radius: $border-radius-s;
+    padding: $unit-05 $unit-05;
+    box-shadow: $shadow-normal-l $warning-color-light;
+    width: 90%;
+    max-width: 20ch;
+  }
+}
 
 @media (max-width: 1000px) {
   .gameTable {

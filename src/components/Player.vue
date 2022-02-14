@@ -5,7 +5,7 @@
     :style="`background-color:hsl(${player.color}, 100%, 80%)`"
   >
     <h2 v-if="!isEditing" @click="editName">
-      {{ !player.name ? `Player ${player.num}` : player.name }}
+      {{ player.name == "Player" ? `Player ${player.num}` : player.name }}
     </h2>
     <input
       v-else
@@ -17,10 +17,10 @@
     />
     <span id="playerScore" class="score">{{ player.score }}</span>
     <div class="current">
+      <p class="held">Held: {{ player.held }}</p>
       <div class="wins">
         <span v-for="win in player.wins" :key="win">🌟</span>
       </div>
-      <p class="held">Held: {{ player.held }}</p>
     </div>
   </section>
 </template>
