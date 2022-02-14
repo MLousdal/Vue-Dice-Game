@@ -7,13 +7,6 @@
   display: grid;
   grid-template-columns: auto 1fr;
 
-  .score {
-    font-size: clamp(2rem, 5vw, 3rem);
-  }
-  .score-05 {
-    font-size: 1.5rem;
-  }
-
   .players-container {
     grid-column: 2;
     grid-row: 1;
