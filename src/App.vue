@@ -105,7 +105,7 @@ export default {
           active: true,
           score: 0,
           held: 0,
-          wins: ["", "", "", "", ""],
+          wins: [],
         },
         {
           name: "Player",
