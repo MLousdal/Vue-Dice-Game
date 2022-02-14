@@ -161,10 +161,12 @@ export default {
       }, 2000);
 
       this.players[this.playerRef].active = false;
+      console.log(this.playerRef + 1, this.amountPlayers);
 
-      if (this.playerRef == this.players.length - 1) {
+      if (this.playerRef + 1 < this.amountPlayers) {
         this.playerRef = this.playerRef + 1;
       } else {
+        console.log("else");
         this.playerRef = 0;
       }
 
@@ -183,7 +185,7 @@ export default {
     addPlayer() {
       this.players.push({
         name: "",
-        num: this.players.length + 1,
+        num: this.amountPlayers + 1,
         color: this.randomColor(),
         active: false,
         score: 0,
@@ -205,7 +207,11 @@ export default {
     },
     randomColor() {
       return Math.floor(Math.random() * 360);
-      // return Math.random(360 / this.players.length);
+    },
+  },
+  computed: {
+    amountPlayers() {
+      return this.players.length;
     },
   },
 };
