@@ -1,7 +1,7 @@
 @use "../base/variables" as *;
 
 /* Style the buttons that are used to open and close the accordion panel */
-.accordion {
+.ruleBtn {
   all: unset;
   border-radius: $border-radius;
   box-sizing: border-box;
@@ -9,12 +9,13 @@
   background-color: var(--foreground-color);
   color: var(--font-color);
   cursor: pointer;
-  padding: $unit-1;
+  padding: $unit-1 $unit-15;
   width: 100%;
   text-align: left;
   border: none;
   outline: none;
   transition: 0.2s;
+  position: relative;
 
   &.active,
   &:hover {
@@ -23,10 +24,26 @@
 }
 
 .panel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 50ch;
   padding: $unit-1 $unit-15;
   background-color: var(--foreground-color);
-  box-shadow: $shadow-normal var(--shadow);
+  box-shadow: $shadow-normal-l $neutral-55;
   overflow: hidden;
   transition: display 0.2s ease-in;
-  width: 100%;
+  z-index: 5;
+  width: 90%;
+}
+
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  background-color: #2727274f;
 }

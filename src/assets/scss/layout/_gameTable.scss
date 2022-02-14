@@ -16,15 +16,19 @@
 
   .players-container {
     grid-column: 2;
+    grid-row: 1;
     display: flex;
     flex-direction: column;
     justify-content: start;
     gap: $unit-15;
   }
 
-  .buttonContainer {
+  aside {
     grid-column: 1;
-    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    gap: $unit-1;
+    // grid-row: 1;
   }
 }
 

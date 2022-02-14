@@ -1,28 +1,38 @@
 <template>
   <h1 class="text center">Dice on ice 🎲</h1>
   <main class="wrapper gameTable">
-    <div class="buttonContainer">
-      <div class="dice" v-show="!gameEnd">6</div>
+    <aside>
+      <div class="buttonContainer">
+        <div class="dice" v-show="!gameEnd">6</div>
+        <button
+          v-if="!gameEnd"
+          data-alttext="🎲 Roll"
+          @click="rollDice"
+          :disabled="rollingDice"
+        >
+          <span>🎲 Roll dice</span>
+        </button>
+        <button
+          v-if="!gameEnd"
+          data-alttext="📥 hold"
+          @click="holdScore"
+          :disabled="rollingDice"
+        >
+          <span>📥 hold</span>
+        </button>
+        <button v-if="gameEnd" data-alttext="🔄 Restart" @click="newGame">
+          <span>🔄 New Game</span>
+        </button>
+      </div>
       <button
-        v-if="!gameEnd"
-        data-alttext="🎲 Roll"
-        @click="rollDice"
-        :disabled="rollingDice"
+        class="ruleBtn"
+        :class="showRules ? 'active' : ''"
+        @click="showRules = !showRules"
       >
-        <span>🎲 Roll dice</span>
+        Rules
       </button>
-      <button
-        v-if="!gameEnd"
-        data-alttext="📥 hold"
-        @click="holdScore"
-        :disabled="rollingDice"
-      >
-        <span>📥 hold</span>
-      </button>
-      <button v-if="gameEnd" data-alttext="🔄 Restart" @click="newGame">
-        <span>🔄 New Game</span>
-      </button>
-    </div>
+    </aside>
+
     <div class="players-container">
       <PlayerVue
         v-for="player in players"
@@ -34,31 +44,27 @@
       </div>
     </div>
   </main>
-  <section class="wrapper flex column gap-1">
-    <div>
-      <button
-        class="accordion"
-        :class="showRules ? 'active' : ''"
-        @click="showRules = !showRules"
-      >
-        Rules
-      </button>
-      <div class="panel" v-show="showRules">
-        <ul>
-          <li>
-            Each player is allowed to roll the dice till the dice shows one
-          </li>
-          <li>
-            As soon as dice shows one all the cumulative scores till now becomes
-            zero
-          </li>
-          <li>
-            If the player holds the score, then his/her score is added to his
-            permanent final score
-          </li>
-          <li>The first player to score a permanent score of 50 wins!!</li>
-        </ul>
-      </div>
+  <section class="rules">
+    <div
+      class="background"
+      @click="showRules = !showRules"
+      v-show="showRules"
+    ></div>
+    <div class="panel" v-show="showRules">
+      <h3>Rules:</h3>
+      <hr />
+      <ul>
+        <li>Each player is allowed to roll the dice till the dice shows one</li>
+        <li>
+          As soon as the dice shows one all the accumulated score till now
+          resets to the last held score
+        </li>
+        <li>
+          If the player holds their score, then their score is added to their
+          permanent score
+        </li>
+        <li>The first player to score 50 points wins!!</li>
+      </ul>
     </div>
   </section>
 </template>
@@ -198,7 +204,7 @@ export default {
       window.requestAnimationFrame(step);
     },
     randomColor() {
-      return Math.floor(Math.random() * 360) + 30;
+      return Math.floor(Math.random() * 360);
       // return Math.random(360 / this.players.length);
     },
   },

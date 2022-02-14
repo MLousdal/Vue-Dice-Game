@@ -5,16 +5,16 @@
   background-color: var(--foreground-color);
   border-radius: $border-radius;
   box-shadow: $shadow-normal var(--shadow);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   gap: $unit-1;
   justify-content: center;
-  order: 1;
   padding: $unit-15;
   height: min-content;
+  max-width: 100%;
 
   button {
-    // width: 100%;
     flex: 1 1 0px;
     display: flex;
     justify-content: center;
