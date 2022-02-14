@@ -182,12 +182,10 @@ export default {
       }, 2000);
 
       this.players[this.playerRef].active = false;
-      console.log(this.playerRef + 1, this.amountPlayers);
 
       if (this.playerRef + 1 < this.amountPlayers) {
         this.playerRef = this.playerRef + 1;
       } else {
-        console.log("else");
         this.playerRef = 0;
       }
 
